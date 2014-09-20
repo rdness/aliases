@@ -131,4 +131,5 @@ export PATH=$PATH:.
 	alias cdc='cd /cygdrive/c'
 	alias term='/cygdrive/c/cygwin64/bin/mintty.exe -i /Cygwin-Terminal.ico - & >> /dev/null'
 	alias add='/cygdrive/c/cygwin64/setup-x86_64.exe'
+	alias cdg='cd /cygdrive/c/Users/david/Documents/backup/git'
 	#---End of Aliases---#
