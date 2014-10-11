@@ -48,7 +48,7 @@ export PATH=$PATH:.
 
 	#----------Functions----------#
 	
-	function gpj
+	function cpj
 	{
 		cd `cat ~/.pjd.txt`;
 	}
@@ -97,6 +97,9 @@ export PATH=$PATH:.
 
 	function gcomp
 	{
+		echo $1;
+		echo "\n";
+
 		g++ -g -Wall -Wextra -o $1 $1.cpp;
 	}
 	
