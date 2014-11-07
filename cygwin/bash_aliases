@@ -45,6 +45,9 @@ export PATH=$PATH:.
 	# For more information goto:
 	# http://www.cyberciti.biz/tips/linux-limiting-user-process.html
 
+	# To tar a directory into a file, use the following tar command:
+	#
+	#	tar -pcvzf <filename.tar.gz> <directory>
 
 	#----------Functions----------#
 	
@@ -98,6 +101,11 @@ export PATH=$PATH:.
 	function gcomp
 	{
 		g++ -g -Wall -Wextra -o $1 $1.cpp;
+	}
+	
+	function gcom
+	{
+		gcc -g -Wall -Wextra -o $1 $1.c;
 	}
 	
 	#---End of Functions---#
