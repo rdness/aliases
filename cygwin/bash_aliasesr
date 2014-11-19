@@ -2,6 +2,9 @@
 	# to type ./a.out
 export PATH=$PATH:.
 
+	# Includes the Windows java binary directory.
+export PATH=$PATH:/cygdrive/c/Program\ Files/Java/jdk1.8.0_25/bin
+
 	# Includes Home, Desktop and Documents in the CD path, so you dont have
 	# to change into those directories to use access files there anymore
 #export CDPATH=.:..:~:~/Desktop:~/Documents
@@ -45,10 +48,13 @@ export PATH=$PATH:.
 	# For more information goto:
 	# http://www.cyberciti.biz/tips/linux-limiting-user-process.html
 
+	# To tar a directory into a file, use the following tar command:
+	#
+	#	tar -pcvzf <filename.tar.gz> <directory>
 
 	#----------Functions----------#
 	
-	function cpj
+	function gpj
 	{
 		cd `cat ~/.pjd.txt`;
 	}
@@ -97,12 +103,25 @@ export PATH=$PATH:.
 
 	function gcomp
 	{
-		echo $1;
-		echo "\n";
-
 		g++ -g -Wall -Wextra -o $1 $1.cpp;
 	}
 	
+	function gcom
+	{
+		gcc -g -Wall -Wextra -o $1 $1.c;
+	}
+
+	function shell
+	{
+		touch $1;
+		chmod +x $1
+		echo "#! /usr/bin/python" >> $1
+		echo "" >> $1
+		echo "" >> $1
+
+		vi $1
+	}
+
 	#---End of Functions---#
 
 

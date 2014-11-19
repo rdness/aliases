@@ -2,6 +2,9 @@
 	# to type ./a.out
 export PATH=$PATH:.
 
+	# Includes the Windows java binary directory.
+export PATH=$PATH:/cygdrive/c/Program\ Files/Java/jdk1.8.0_25/bin
+
 	# Includes Home, Desktop and Documents in the CD path, so you dont have
 	# to change into those directories to use access files there anymore
 #export CDPATH=.:..:~:~/Desktop:~/Documents
@@ -107,7 +110,18 @@ export PATH=$PATH:.
 	{
 		gcc -g -Wall -Wextra -o $1 $1.c;
 	}
-	
+
+	function shell
+	{
+		touch $1;
+		chmod +x $1
+		echo "#! /usr/bin/python" >> $1
+		echo "" >> $1
+		echo "" >> $1
+
+		vi $1
+	}
+
 	#---End of Functions---#
 
 
@@ -151,4 +165,5 @@ export PATH=$PATH:.
 	alias term='/cygdrive/c/cygwin64/bin/mintty.exe -i /Cygwin-Terminal.ico - & >> /dev/null'
 	alias add='/cygdrive/c/cygwin64/setup-x86_64.exe'
 	alias cdg='cd /cygdrive/c/Users/david/Documents/backup/git'
+	alias cdf='cd /cygdrive/f'
 	#---End of Aliases---#
