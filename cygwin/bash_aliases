@@ -23,7 +23,7 @@
 		}
 		
 		alias spj='pwd > ~/.pjd.txt; echo "Set Last Working Project to: " `cat ~/.pjd.txt`'
-
+	
 	#--- Directory Changers
 		function cdd
 		{
