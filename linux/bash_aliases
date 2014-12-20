@@ -1,0 +1,193 @@
+########################## Aliases and Functions ##########################
+
+	#--- Last Working Directory Commands
+		function cpl
+		{
+			cp -r ./$1 `cat ~/.lwd.txt`;
+		}
+		
+		function mvl
+		{ 
+			mv ./$1 `cat ~/.lwd.txt`;
+		}
+
+		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
+		alias lwd='cat ~/.lwd.txt'
+		alias gl='cd `cat ~/.lwd.txt`; ls'
+		alias cdl='cd `cat ~/.lwd.txt`'
+
+	#--- Last Working Project Commands
+		function gpj
+		{
+			cd `cat ~/.pjd.txt`;
+		}
+		
+		alias spj='pwd > ~/.pjd.txt; echo "Set Last Working Project to: " `cat ~/.pjd.txt`'
+	
+	#--- Directory Changers
+		function cdd
+		{
+			cd /cygdrive/c/Users/david/Desktop/$1;
+		}
+		
+		function cdr
+		{
+			cd ~/resources/$1;
+		}
+		
+		function cdc
+		{
+			cd /cygdrive/c/$1;
+		}
+		
+		function cdg
+		{
+			cd /cygdrive/c/Users/david/Documents/backup/git/$1;
+		}
+		
+		function cdw
+		{
+			cd /cygdrive/c/Users/david/Documents/$1;
+		}
+		
+		function cde
+		{
+			cd /cygdrive/e/$1;
+		}
+
+		function cdp
+		{
+			cd ~/programming/$1
+		}
+				
+		alias ..='cd ..'
+		alias ...='cd ../..'
+		alias ....='cd ../../../'
+		alias .....='cd ../../../../'
+
+	#--- Project Euler
+		function gpe
+		{
+			cd ~/programming/projectEuler/prob`cat ~/programming/projectEuler/.currentProject`;
+		}
+		
+		function npe
+		{
+			# Set current project number into variable
+			projectENum=`cat ~/programming/projectEuler/.currentProject`
+		
+			# Increment project number
+			projectENum=$((projectENum + 1));
+		
+			# Store number back into .currentProject
+			echo $projectENum >& ~/programming/projectEuler/.currentProject;
+		
+			# Create dir for new project
+			mkdir ~/programming/projectEuler/prob$projectENum;
+		
+			# Copy template into dir
+			cp ~/.vim/templates/cppMain.txt ~/programming/projectEuler/prob$projectENum/problem$projectENum.cpp
+		
+			# cd into newly created dir
+			cd ~/programming/projectEuler/prob$projectENum;
+		}
+
+	#--- Configurations
+		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
+		alias la='ls -lah --color'
+		alias ls='ls --color'
+	
+	#--- Vim
+		alias vi='vim -p'
+		alias vb='vim ~/.vimrc'
+	
+	#--- Backup
+		function cdb
+		{
+			cd /cygdrive/c/Users/david/Documents/backup/$1;
+		}
+		
+		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
+		alias bar='perl ~/.bar.pl'
+		
+	
+	#--- System Tools
+		function gcomp
+		{
+			g++ -g -Wall -Wextra -o $1 $1.cpp;
+		}
+		
+		function gcom
+		{
+			gcc -g -Wall -Wextra -o $1 $1.c;
+		}
+		
+		alias dug='du -cha | grep "[0-9]G[ 	]"'
+		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
+		alias untar='tar xvfz'
+		alias open='explorer .'
+		alias term='/cygdrive/c/cygwin64/bin/mintty.exe -i /Cygwin-Terminal.ico - & >> /dev/null'
+		alias add='/cygdrive/c/cygwin64/setup-x86_64.exe'
+
+	#--- New Aliases / functions
+		alias palias='~/.ba.sh 1'
+		alias fn='~/.ba.sh 0'
+	
+	#---Unorganized Functions---#
+		
+	#---End of Functions---#
+
+
+	#---Unorganized Aliases---#
+
+	#---End of Aliases---#
+
+########################## Notes ##########################
+
+	# Includes other paths that are relevant to the operating system.
+	if [ -f ~/.bash_paths ]; then
+		. ~/.bash_paths
+	fi
+
+	# Adds the Time to the command line prompt
+	#export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
+	#export PS1="${PS1%\\\$*} \t \$ "     
+	#export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
+
+	# Note that in order to change directories with a shell script you need 
+	# to add a . to the beginning of the alias. For example, you need to 
+	# write something like: 
+	# 
+	# alias cngDir=". ~/cdScript" 
+	# 
+	# in order to change the directory. Otherwise, if 
+	# you're just using a regular alias, just do:
+	# alias cngDir="cd directory"
+	
+	# if/then/else loops in bash:
+	# 
+	# [[ test_condition ]] && if_true_do_this || otherwise_do_this
+	#
+	# Alternatively you can do this
+	# if [[ test_condition ]]; then
+	# if_true_do_this
+	# else
+	# otherwise_do_this
+	# fi
+	
+	# To prevent a fork bomb, edit the file /etc/security/limits.conf
+	# and add the line:
+	#
+	# username	hard	nproc	300
+	#
+	# replacing "username" with whoever you want to limit.
+	# The hard option is to enforce hard limits.
+	# nproc means the number of processes, and 300 tells you how many
+	# to limit to.
+	# 
+	# For more information goto:
+	# http://www.cyberciti.biz/tips/linux-limiting-user-process.html
+	
+	# To tar a directory into a file, use the following tar command:
+	#
+	#	tar -pcvzf <filename.tar.gz> <directory>
