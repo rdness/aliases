@@ -34,7 +34,7 @@
 ## 
 ##	To begin using this script, enter the directory where you want your files backed up in.
 ##	Note, please omit the last backslash in the pathname.
-$backupPath = "/cygdrive/c/Users/david/Documents";
+$backupPath = "~";
 
 
 ## Includes files needed to get directory information.

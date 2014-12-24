@@ -27,7 +27,7 @@
 	#--- Directory Changers
 		function cdd
 		{
-			cd /cygdrive/c/Users/david/Desktop/$1;
+			cd ~/Desktop/$1;
 		}
 		
 		function cdr
@@ -35,26 +35,11 @@
 			cd ~/resources/$1;
 		}
 		
-		function cdc
-		{
-			cd /cygdrive/c/$1;
-		}
-		
 		function cdg
 		{
-			cd /cygdrive/c/Users/david/Documents/backup/git/$1;
+			cd ~/backup/git/$1;
 		}
 		
-		function cdw
-		{
-			cd /cygdrive/c/Users/david/Documents/$1;
-		}
-		
-		function cde
-		{
-			cd /cygdrive/e/$1;
-		}
-
 		function cdp
 		{
 			cd ~/programming/$1
@@ -104,7 +89,7 @@
 	#--- Backup
 		function cdb
 		{
-			cd /cygdrive/c/Users/david/Documents/backup/$1;
+			cd ~/backup/$1;
 		}
 		
 		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
@@ -126,8 +111,10 @@
 		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
 		alias untar='tar xvfz'
 		alias open='explorer .'
-		alias term='/cygdrive/c/cygwin64/bin/mintty.exe -i /Cygwin-Terminal.ico - & >> /dev/null'
-		alias add='/cygdrive/c/cygwin64/setup-x86_64.exe'
+		alias term='gnome-terminal'
+
+	#--- Apache Spark
+		alias spark='spark-shell'
 
 	#--- New Aliases / functions
 		alias palias='~/.ba.sh 1'
