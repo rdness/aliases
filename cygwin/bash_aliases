@@ -121,6 +121,8 @@
 		{
 			gcc -g -Wall -Wextra -o $1 $1.c;
 		}
+
+		alias makemake='makemake.py'
 		
 		alias dug='du -cha | grep "[0-9]G[ 	]"'
 		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
