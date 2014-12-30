@@ -1,0 +1,10 @@
+# Includes the current directory in the PATH variable, so you dont have
+# to type ./a.out
+export PATH=$PATH:.
+
+# Includes Home, Desktop and Documents in the CD path, so you dont have
+# to change into those directories to use access files there anymore
+#export CDPATH=.:..:~:~/Desktop:~/Documents
+
+#export PATH=$PATH:
+
