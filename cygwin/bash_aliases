@@ -94,6 +94,7 @@
 
 	#--- Configurations
 		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
+		alias wb='vim ~/.work_aliases; source ~/.work_aliases'
 		alias la='ls -lah --color'
 		alias ls='ls --color'
 	
@@ -145,6 +146,12 @@
 	#---End of Aliases---#
 
 ########################## Notes ##########################
+
+	# Includes aliases used at work
+	if [ -f ~/.work_aliases ]; then
+		. ~/.work_aliases
+	fi
+
 
 	# Includes other paths that are relevant to the operating system.
 	if [ -f ~/.bash_paths ]; then

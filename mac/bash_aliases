@@ -3,12 +3,12 @@
 	#--- Last Working Directory Commands
 		function cpl
 		{
-			cp -r ./$1 `cat ~/.lwd.txt`;
+			cp -r "./$1" `cat ~/.lwd.txt`;
 		}
 		
 		function mvl
 		{ 
-			mv ./$1 `cat ~/.lwd.txt`;
+			mv "./$1" `cat ~/.lwd.txt`;
 		}
 
 		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
@@ -30,19 +30,19 @@
 			cd ~/Desktop/$1;
 		}
 		
-		function cdr
+		function cdn
 		{
-			cd ~/resources/$1;
+			cd ~/Downloads/$1;
 		}
 		
 		function cdg
 		{
-			cd ~/backup/git/$1;
+			cd ~/repos/$1
 		}
-		
-		function cdp
+				
+		function cdc
 		{
-			cd ~/programming/$1
+			cd ~/Documents/$1
 		}
 				
 		alias ..='cd ..'
@@ -50,39 +50,19 @@
 		alias ....='cd ../../../'
 		alias .....='cd ../../../../'
 
-	#--- Project Euler
-		function gpe
-		{
-			cd ~/programming/projectEuler/prob`cat ~/programming/projectEuler/.currentProject`;
-		}
-		
-		function npe
-		{
-			# Set current project number into variable
-			projectENum=`cat ~/programming/projectEuler/.currentProject`
-		
-			# Increment project number
-			projectENum=$((projectENum + 1));
-		
-			# Store number back into .currentProject
-			echo $projectENum >& ~/programming/projectEuler/.currentProject;
-		
-			# Create dir for new project
-			mkdir ~/programming/projectEuler/prob$projectENum;
-		
-			# Copy template into dir
-			cp ~/.vim/templates/cppMain.txt ~/programming/projectEuler/prob$projectENum/problem$projectENum.cpp
-		
-			# cd into newly created dir
-			cd ~/programming/projectEuler/prob$projectENum;
-		}
-
 	#--- Configurations
 		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
 		alias wb='vim ~/.work_aliases; source ~/.work_aliases'
-		alias la='ls -lah --color'
-		alias ls='ls --color'
-	
+		alias la='ls -lahG'
+		alias ls='ls -G'
+		function addpath
+		{
+			echo "" >> ~/.bash_paths;
+			echo "#" >> ~/.bash_paths;
+			echo "export PATH=\$PATH:"$PWD >> ~/.bash_paths;
+			vi ~/.bash_paths
+		}
+
 	#--- Vim
 		alias vi='vim -p'
 		alias vb='vim ~/.vimrc'
@@ -94,8 +74,7 @@
 		}
 		
 		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
-		alias bar='perl ~/.bar.pl'
-		
+		alias bar='perl ~/.bar.pl'		
 	
 	#--- System Tools
 		function gcomp
@@ -111,16 +90,11 @@
 		alias dug='du -cha | grep "[0-9]G[ 	]"'
 		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
 		alias untar='tar xvfz'
-		alias open='explorer .'
-		alias term='gnome-terminal'
-
-	#--- Apache Spark
-		alias spark='spark-shell'
 
 	#--- New Aliases / functions
 		alias palias='~/.ba.sh 1'
 		alias fn='~/.ba.sh 0'
-	
+
 	#---Unorganized Functions---#
 		
 	#---End of Functions---#
@@ -136,7 +110,6 @@
 	if [ -f ~/.work_aliases ]; then
 		. ~/.work_aliases
 	fi
-
 
 	# Includes other paths that are relevant to the operating system.
 	if [ -f ~/.bash_paths ]; then
