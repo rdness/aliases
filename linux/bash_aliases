@@ -32,50 +32,18 @@
 		
 		function cdr
 		{
-			cd ~/resources/$1;
+			cd ~/repos/$1;
 		}
 		
-		function cdg
+		function cdn
 		{
-			cd ~/backup/git/$1;
+			cd ~/Downloads;
 		}
 		
-		function cdp
-		{
-			cd ~/programming/$1
-		}
-				
 		alias ..='cd ..'
 		alias ...='cd ../..'
 		alias ....='cd ../../../'
 		alias .....='cd ../../../../'
-
-	#--- Project Euler
-		function gpe
-		{
-			cd ~/programming/projectEuler/prob`cat ~/programming/projectEuler/.currentProject`;
-		}
-		
-		function npe
-		{
-			# Set current project number into variable
-			projectENum=`cat ~/programming/projectEuler/.currentProject`
-		
-			# Increment project number
-			projectENum=$((projectENum + 1));
-		
-			# Store number back into .currentProject
-			echo $projectENum >& ~/programming/projectEuler/.currentProject;
-		
-			# Create dir for new project
-			mkdir ~/programming/projectEuler/prob$projectENum;
-		
-			# Copy template into dir
-			cp ~/.vim/templates/cppMain.txt ~/programming/projectEuler/prob$projectENum/problem$projectENum.cpp
-		
-			# cd into newly created dir
-			cd ~/programming/projectEuler/prob$projectENum;
-		}
 
 	#--- Configurations
 		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
@@ -100,19 +68,31 @@
 	#--- System Tools
 		function gcomp
 		{
-			g++ -g -Wall -Wextra -o $1 $1.cpp;
+			g++ -g -Wall -Wextra -o $1 $1.cpp -std=c++11 -pthread -lrt -Wl,--no-as-needed;
 		}
 		
 		function gcom
 		{
 			gcc -g -Wall -Wextra -o $1 $1.c;
 		}
-		
+
+		alias makemake="~/.makemake.py"		
 		alias dug='du -cha | grep "[0-9]G[ 	]"'
 		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
 		alias untar='tar xvfz'
-		alias open='explorer .'
-		alias term='gnome-terminal'
+		alias open='xdg-open . &> /dev/null'
+		alias mntwin="sudo mount /dev/sda2 /mnt/windows"
+		alias umntwin="sudo umount /mnt/windows"
+		alias wind="mntwin &> /dev/null; cd /mnt/windows/Users/Order/Desktop"
+
+		function addpath
+		{		
+			echo "" >> ~/.bash_paths;
+			echo "#" >> ~/.bash_paths;
+			echo "export PATH=\$PATH:"$PWD >> ~/.bash_paths;
+			vi ~/.bash_paths
+		}
+
 
 	#--- Apache Spark
 		alias spark='spark-shell'
@@ -137,7 +117,6 @@
 		. ~/.work_aliases
 	fi
 
-
 	# Includes other paths that are relevant to the operating system.
 	if [ -f ~/.bash_paths ]; then
 		. ~/.bash_paths
@@ -146,7 +125,8 @@
 	# Adds the Time to the command line prompt
 	#export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
 	#export PS1="${PS1%\\\$*} \t \$ "     
-	#export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
+	#export PS1='syang:\w \$ '
+	export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
 
 	# Note that in order to change directories with a shell script you need 
 	# to add a . to the beginning of the alias. For example, you need to 

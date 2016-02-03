@@ -67,7 +67,7 @@ outfile.write("CC=gcc\n")
 outfile.write("CPC=g++\n")
 outfile.write("\n")
 
-outfile.write("CFLAGS=-g -Wall -Wextra\n")
+outfile.write("CFLAGS=-g -Wall -Wextra -std=c++11 -pthread -lrt -Wl,--no-as-needed\n")
 outfile.write("\n")
 
 objFiles = []
