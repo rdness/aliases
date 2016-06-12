@@ -47,10 +47,10 @@
 			cd $ALIAS_HOME/repos/$1;
 		}
 		
-		function cdn
-		{
-			#cd $ALIAS_HOME/Downloads;
-		}
+		#function cdn
+		#{
+		#	cd $ALIAS_HOME/Downloads;
+		#}
 		
 		alias ..='cd ..'
 		alias ...='cd ../..'
