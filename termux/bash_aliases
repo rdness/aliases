@@ -1,0 +1,155 @@
+############################# Environment Setup #############################
+	
+	# Includes environment variables
+	if [ -f ~/.bash_vars ]; then
+		.  ~/.bash_vars
+	fi
+	
+	# Includes aliases used at work
+	if [ -f $ALIAS_HOME/.work_aliases ]; then
+		.  $ALIAS_HOME/.work_aliases
+	fi
+
+	# Includes other paths that are relevant to the operating system.
+	if [ -f $ALIAS_HOME/.bash_paths ]; then
+		. $ALIAS_HOME/.bash_paths
+	fi
+
+########################## Aliases and Functions ##########################
+
+	#--- Last Working Directory Commands
+		function cpl
+		{
+			cp -r ./$1 `cat ~/.lwd.txt`;
+		}
+		
+		function mvl
+		{ 
+			mv ./$1 `cat ~/.lwd.txt`;
+		}
+
+		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
+		alias lwd='cat ~/.lwd.txt'
+		alias gl='cd `cat ~/.lwd.txt`; ls'
+		alias cdl='cd `cat ~/.lwd.txt`'
+
+	#--- Last Working Project Commands
+		function gpj
+		{
+			cd `cat ~/.pjd.txt`;
+		}
+		
+		alias spj='pwd > ~/.pjd.txt; echo "Set Last Working Project to: " `cat ~/.pjd.txt`'
+	
+	#--- Directory Changers
+		function cdr
+		{
+			cd $ALIAS_HOME/repos/$1;
+		}
+		
+		function cdn
+		{
+			#cd $ALIAS_HOME/Downloads;
+		}
+		
+		alias ..='cd ..'
+		alias ...='cd ../..'
+		alias ....='cd ../../../'
+		alias .....='cd ../../../../'
+
+	#--- Configurations
+		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
+		alias wb='vim ~/.work_aliases; source ~/.work_aliases'
+		alias la='ls -lah --color'
+		alias ls='ls --color'
+	
+	#--- Vim
+		alias vi='vim -p'
+		alias vb='vim ~/.vimrc'
+	
+	#--- Backup
+		function cdb
+		{
+			cd ~/backup/$1;
+		}
+		
+		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
+		alias bar='perl $ALIAS_HOME/.bar.pl'
+		
+	
+	#--- System Tools
+		function gcomp
+		{
+			g++ -g -Wall -Wextra -o $1 $1.cpp -std=c++11 -pthread -lrt -Wl,--no-as-needed;
+		}
+		
+		function gcom
+		{
+			gcc -g -Wall -Wextra -o $1 $1.c;
+		}
+
+		alias makemake="$ALIAS_HOME/.makemake.py"		
+		alias dug='du -cha | grep "[0-9]G[ 	]"'
+		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
+		alias untar='tar xvfz'
+
+		function addpath
+		{		
+			echo "" >> $ALIAS_HOME/.bash_paths;
+			echo "#" >> $ALIAS_HOME/.bash_paths;
+			echo "export PATH=\$PATH:"$PWD >> $ALIAS_HOME/.bash_paths;
+			vi $ALIAS_HOME/.bash_paths
+		}
+
+	#--- New Aliases / functions
+		alias palias='$ALIAS_HOME/.ba.sh 1'
+		alias fn='$ALIAS_HOME/.ba.sh 0'
+	
+	#---Unorganized Functions---#
+		
+	#---End of Functions---#
+
+
+	#---Unorganized Aliases---#
+
+	#---End of Aliases---#
+
+########################## Notes ##########################
+
+	# Note that in order to change directories with a shell script you need 
+	# to add a . to the beginning of the alias. For example, you need to 
+	# write something like: 
+	# 
+	# alias cngDir=". ~/cdScript" 
+	# 
+	# in order to change the directory. Otherwise, if 
+	# you're just using a regular alias, just do:
+	# alias cngDir="cd directory"
+	
+	# if/then/else loops in bash:
+	# 
+	# [[ test_condition ]] && if_true_do_this || otherwise_do_this
+	#
+	# Alternatively you can do this
+	# if [[ test_condition ]]; then
+	# if_true_do_this
+	# else
+	# otherwise_do_this
+	# fi
+	
+	# To prevent a fork bomb, edit the file /etc/security/limits.conf
+	# and add the line:
+	#
+	# username	hard	nproc	300
+	#
+	# replacing "username" with whoever you want to limit.
+	# The hard option is to enforce hard limits.
+	# nproc means the number of processes, and 300 tells you how many
+	# to limit to.
+	# 
+	# For more information goto:
+	# http://www.cyberciti.biz/tips/linux-limiting-user-process.html
+	
+	# To tar a directory into a file, use the following tar command:
+	#
+	#	tar -pcvzf <filename.tar.gz> <directory>
