@@ -89,6 +89,8 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
+export ALIAS_HOME=/home/rdness
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -97,7 +99,6 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
 
 # Adds the Time to the command line prompt
 #export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '

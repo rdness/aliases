@@ -1,3 +1,20 @@
+############################# Environment Setup #############################
+	
+	# Includes aliases used at work
+	if [ -f $ALIAS_HOME/.work_aliases ]; then
+		.  $ALIAS_HOME/.work_aliases
+	fi
+	
+	# Includes environment variables
+	if [ -f $ALIAS_HOME/.bash_vars ]; then
+		.  $ALIAS_HOME/.bash_vars
+	fi
+	
+	# Includes other paths that are relevant to the operating system.
+	if [ -f $ALIAS_HOME/.bash_paths ]; then
+		. $ALIAS_HOME/.bash_paths
+	fi
+
 ########################## Aliases and Functions ##########################
 
 	#--- Last Working Directory Commands
@@ -27,17 +44,17 @@
 	#--- Directory Changers
 		function cdd
 		{
-			cd ~/Desktop/$1;
+			cd $ALIAS_HOME/Desktop/$1;
 		}
 		
 		function cdr
 		{
-			cd ~/repos/$1;
+			cd $ALIAS_HOME/repos/$1;
 		}
 		
 		function cdn
 		{
-			cd ~/Downloads;
+			cd $ALIAS_HOME/Downloads;
 		}
 		
 		alias ..='cd ..'
@@ -62,7 +79,7 @@
 		}
 		
 		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
-		alias bar='perl ~/.bar.pl'
+		alias bar='perl $ALIAS_HOME/.bar.pl'
 		
 	
 	#--- System Tools
@@ -76,7 +93,7 @@
 			gcc -g -Wall -Wextra -o $1 $1.c;
 		}
 
-		alias makemake="~/.makemake.py"		
+		alias makemake="$ALIAS_HOME/.makemake.py"		
 		alias dug='du -cha | grep "[0-9]G[ 	]"'
 		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
 		alias untar='tar xvfz'
@@ -87,19 +104,46 @@
 
 		function addpath
 		{		
-			echo "" >> ~/.bash_paths;
-			echo "#" >> ~/.bash_paths;
-			echo "export PATH=\$PATH:"$PWD >> ~/.bash_paths;
-			vi ~/.bash_paths
+			echo "" >> $ALIAS_HOME/.bash_paths;
+			echo "#" >> $ALIAS_HOME/.bash_paths;
+			echo "export PATH=\$PATH:"$PWD >> $ALIAS_HOME/.bash_paths;
+			vi $ALIAS_HOME/.bash_paths
 		}
 
+	#--- Hue commands
+		function bedon
+		{
+			if [[ $1 -gt 0 ]]; then
+				curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/1/action -d '{ "on": true, "bri": '$1',"effect": "none"}' &> /dev/null
+			else
+				curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/1/action -d '{ "on": true, "bri": 254, "effect": "none"}' &> /dev/null
+			fi
+		}		
+		
+		function bedoff
+		{
+			curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/1/action -d '{ "on": false, "effect": "none"}' &> /dev/null
+		}		
 
+		function kiton
+		{
+			if [[ $1 -gt 0 ]]; then
+				curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/2/action -d '{ "on": true, "bri": '$1',"effect": "none"}' &> /dev/null
+			else
+				curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/2/action -d '{ "on": true, "bri": 254, "effect": "none"}' &> /dev/null
+			fi
+		}	
+
+		function kitoff
+		{
+			curl -X PUT -H "Content-type: application/json" http://$HUESERVER/api/$HUEKEY/groups/2/action -d '{ "on": false, "effect": "none"}' &> /dev/null
+		}
 	#--- Apache Spark
 		alias spark='spark-shell'
 
 	#--- New Aliases / functions
-		alias palias='~/.ba.sh 1'
-		alias fn='~/.ba.sh 0'
+		alias palias='$ALIAS_HOME/.ba.sh 1'
+		alias fn='$ALIAS_HOME/.ba.sh 0'
 	
 	#---Unorganized Functions---#
 		
@@ -111,22 +155,6 @@
 	#---End of Aliases---#
 
 ########################## Notes ##########################
-
-	# Includes aliases used at work
-	if [ -f ~/.work_aliases ]; then
-		. ~/.work_aliases
-	fi
-
-	# Includes other paths that are relevant to the operating system.
-	if [ -f ~/.bash_paths ]; then
-		. ~/.bash_paths
-	fi
-
-	# Adds the Time to the command line prompt
-	#export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
-	#export PS1="${PS1%\\\$*} \t \$ "     
-	#export PS1='syang:\w \$ '
-	export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
 
 	# Note that in order to change directories with a shell script you need 
 	# to add a . to the beginning of the alias. For example, you need to 
