@@ -1,15 +1,15 @@
 ############################# Environment Setup #############################
 	
+	# Includes environment variables
+	if [ -f ~/.bash_vars ]; then
+		.  ~/.bash_vars
+	fi
+	
 	# Includes aliases used at work
 	if [ -f $ALIAS_HOME/.work_aliases ]; then
 		.  $ALIAS_HOME/.work_aliases
 	fi
-	
-	# Includes environment variables
-	if [ -f $ALIAS_HOME/.bash_vars ]; then
-		.  $ALIAS_HOME/.bash_vars
-	fi
-	
+
 	# Includes other paths that are relevant to the operating system.
 	if [ -f $ALIAS_HOME/.bash_paths ]; then
 		. $ALIAS_HOME/.bash_paths

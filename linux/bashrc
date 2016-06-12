@@ -89,21 +89,23 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
-export ALIAS_HOME=/home/rdness
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
+	# Set default Alias Home, and display name
+	export ALIAS_HOME='~'
+	export DISPLAY_NAME=$USER
+
     . ~/.bash_aliases
 fi
 
 # Adds the Time to the command line prompt
 #export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
 #export PS1="${PS1%\\\$*} \t \$ "     
-export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
+export PS1="[\[\033[0;32m\]$DISPLAY_NAME\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ "
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
