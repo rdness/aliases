@@ -18,14 +18,24 @@
 ########################## Aliases and Functions ##########################
 
 	#--- Last Working Directory Commands
-		function cpl
+		function cpls
 		{
-			cp -r ./$1 `cat ~/.lwd.txt`;
+			cp -t `cat ~/.lwd.txt` -r "$*" ;
 		}
 		
+		function cpl
+		{
+			cp -t `cat ~/.lwd.txt` -r $* ;
+		}
+		
+		function mvls # Because fuck filenames with spaces
+		{ 
+			mv -t `cat ~/.lwd.txt` "$*" ;
+		}
+
 		function mvl
 		{ 
-			mv ./$1 `cat ~/.lwd.txt`;
+			mv -t `cat ~/.lwd.txt` $* ;
 		}
 
 		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
@@ -65,8 +75,8 @@
 	#--- Configurations
 		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
 		alias wb='vim ~/.work_aliases; source ~/.work_aliases'
-		alias la='ls -lah --color'
-		alias ls='ls --color'
+		alias la='ls -lah --color=auto'
+		alias ls='ls --color=auto'
 	
 	#--- Vim
 		alias vi='vim -p'
@@ -123,7 +133,8 @@
 
 
 	#---Unorganized Aliases---#
-
+	alias intellij='~/Libraries/idea-IC-163.9166.29/bin/idea.sh &'
+	alias studio='~/Libraries/android-studio/bin/studio.sh &'
 	#---End of Aliases---#
 
 ########################## Notes ##########################
