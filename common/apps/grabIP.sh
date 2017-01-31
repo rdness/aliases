@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Backup Directory
-bkupDir="~/.dns_backup"
+bkupDir="/home/$USER/.dns_backup"
 # Input list of websites to get IP address for
 dnsFile="$bkupDir/dnsList.txt"
 # Output filename for sites + IP addresses
