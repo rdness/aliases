@@ -6,7 +6,7 @@ bkupDir="/home/$USER/.dns_backup"
 dnsFile="$bkupDir/dnsList.txt"
 # Output filename for sites + IP addresses
 date=`date +%m_%d_%y`
-ipAddrFile="$bkupDir/ipList_$date.txt"
+ipAddrFile="$bkupDir/ip_lists/ipList_$date.txt"
 
 # Read through dns file, and grab URL
 while IFS= read -r url

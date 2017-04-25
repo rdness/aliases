@@ -43,6 +43,10 @@
 		alias gl='cd `cat ~/.lwd.txt`; ls'
 		alias cdl='cd `cat ~/.lwd.txt`'
 
+
+	#--- Rename files to remove spaces
+		alias rs='for f in *\ *; do mv "$f" "${f// /_}"; done'
+
 	#--- Last Working Project Commands
 		function gpj
 		{
@@ -120,9 +124,6 @@
 			vi $ALIAS_HOME/.bash_paths
 		}
 
-
-	#--- Apache Spark
-
 	#--- New Aliases / functions
 		alias palias='$ALIAS_HOME/.ba.sh 1'
 		alias fn='$ALIAS_HOME/.ba.sh 0'
@@ -133,8 +134,6 @@
 
 
 	#---Unorganized Aliases---#
-	alias intellij='~/Libraries/idea-IC-163.9166.29/bin/idea.sh &'
-	alias studio='~/Libraries/android-studio/bin/studio.sh &'
 	#---End of Aliases---#
 
 ########################## Notes ##########################
