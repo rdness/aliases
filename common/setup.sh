@@ -13,14 +13,19 @@ echo "Creating directory: repos"
 if [ ! -d "$home/repos" ]; then
 	mkdir repos
 fi
+
 # --- Check if git is Installed
 if [[ -z `command -v git` ]]; then
 	echo "git not installed. Installing git"
 	sudo apt-get install git
-
-	git config --global user.email $getEmail
-	git config --global core.editor vim
 fi
+
+# --- Setup Git preferences
+git config --global user.email $gitEmail
+git config --global core.editor vim
+
+
+
 # --- get directories from git
 cd repos
 if [ ! -d "$home/repos/aliases" ]; then
