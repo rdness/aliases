@@ -30,11 +30,18 @@ HISTFILESIZE=2000
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# Set default Alias Home, and display name
+export ALIAS_HOME=$HOME
+export DISPLAY_NAME=$USER
+
+. ~/.bash_aliases
 fi
 
 # Adds the Time to the command line prompt
 #export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
 #export PS1="${PS1%\\\$*} \t \$ "     
-export PS1='[\[\033[0;32m\]david\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ '
-
+if [ $USER == 'root' ]; then
+export PS1="[\[\033[0;31m\]$DISPLAY_NAME\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ "
+else
+export PS1="[\[\033[0;32m\]$DISPLAY_NAME\[\033[00m\]:\[\033[0;34m\]\w\[\033[0;00m\]\[\033[00m\]] \t\$ "
+fi
