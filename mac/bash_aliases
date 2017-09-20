@@ -40,7 +40,7 @@
 
 		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
 		alias lwd='cat ~/.lwd.txt'
-		alias glw='cd `cat ~/.lwd.txt`; ls'
+		alias gll='cd `cat ~/.lwd.txt`; ls'
 
 
 	#--- Rename files to remove spaces
@@ -128,11 +128,30 @@
 		alias fn='$ALIAS_HOME/.ba.sh 0'
 	
 	#---Unorganized Functions---#
-		
+		function findall
+		{
+			OIFS="$IFS"
+			IFS=$'\n'
+			
+			for f in `find . -type file`; do
+				res=`grep -n "$1" "$f"`
+				if [[ -n $res ]]; then
+					echo "----------------------------------------------------------------"
+					echo "Filename: $f"
+					echo "----------------------------------------------------------------"
+					echo $res
+					echo
+				fi 
+			done
+			
+			IFS="$OIFS"
+		}		
+
 	#---End of Functions---#
 
 
 	#---Unorganized Aliases---#
+		alias tofile=" |& tee"
 	#---End of Aliases---#
 
 ########################## Notes ##########################
