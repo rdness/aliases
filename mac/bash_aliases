@@ -151,7 +151,7 @@
 
 
 	#---Unorganized Aliases---#
-		alias tofile=" |& tee"
+		alias tofile=" 2>&1 | tee"
 	#---End of Aliases---#
 
 ########################## Notes ##########################
