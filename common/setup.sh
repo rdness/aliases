@@ -1,16 +1,13 @@
 #! /bin/bash
 
-# Setup username
-username="rdness"
-gitUsername="rdness"
-gitEmail="orderofmoti@gmail.com"
-
-home="/home/$username"
-
+# Setup git parameters
+gitUsername=""
+gitEmail=""
+gitCoreEditor=""
 
 # Get repo of configuration files
 echo "Creating directory: repos"
-if [ ! -d "$home/repos" ]; then
+if [ ! -d "$HOME/repos" ]; then
 	mkdir repos
 fi
 
@@ -22,17 +19,17 @@ fi
 
 # --- Setup Git preferences
 git config --global user.email $gitEmail
-git config --global core.editor vim
+git config --global core.editor $gitCoreEditor
 
 
 
 # --- get directories from git
 cd repos
-if [ ! -d "$home/repos/aliases" ]; then
+if [ ! -d "$HOME/repos/aliases" ]; then
 	echo "--- Cloning aliases repo"
 	git clone https://github.com/rdness/aliases.git
 fi
-if [ ! -d "$home/repos/vimrc" ]; then
+if [ ! -d "$HOME/repos/vimrc" ]; then
 	echo "--- Cloning vimrc repo"
 	git clone https://github.com/rdness/vimrc
 fi
@@ -44,15 +41,15 @@ if [[ -z `command -v vim` ]]; then
 	echo "vim not installed. Installing vim"
 	sudo apt-get install vim
 fi
-# ----- Link vimrc to home directory
-if [ ! -f "$home/.vimrc" ]; then
-	ln -s $home/repos/vimrc/vimrc $home/.vimrc
+# ----- Link vimrc to HOME directory
+if [ ! -f "$HOME/.vimrc" ]; then
+	ln -s $HOME/repos/vimrc/vimrc $HOME/.vimrc
 
-	mkdir $home/.vim
-	mkdir $home/.vim/backup
-	mkdir $home/.vim/tmps
+	mkdir $HOME/.vim
+	mkdir $HOME/.vim/backup
+	mkdir $HOME/.vim/tmps
 	
-	ln -s $home/repos/vimrc/templates $home/.vim/templates
+	ln -s $HOME/repos/vimrc/templates $HOME/.vim/templates
 fi
 
 # --- Setup bashrc
@@ -64,41 +61,41 @@ case "$os" in
 
 		echo "----- Copying bashrc"	
 		mv .bashrc .bashrc_old
-		ln -s $home/repos/aliases/$osDir/bashrc $home/.bashrc
+		ln -s $HOME/repos/aliases/$osDir/bashrc $HOME/.bashrc
 		;;
 	Darwin)
 		osDir="mac"
 	
 		echo "----- Copying profile"
 		mv .profile .profile_old
-		ln -s $home/repos/aliases/$osDir/profile $home/.profile
+		ln -s $HOME/repos/aliases/$osDir/profile $HOME/.profile
 		;;
 	CYGWIN*)
 		osDir="cygwin"
 	
 		echo "----- Copying bashrc"
 		mv .bashrc .bashrc_old
-		ln -s $home/repos/aliases/$osDir/bashrc $home/.bashrc
+		ln -s $HOME/repos/aliases/$osDir/bashrc $HOME/.bashrc
 		;;
 esac
 
 # --- Setup bash_aliases
 		echo "----- Copying backup script: .bar.pl"
-ln -s $home/repos/aliases/$osDir/bar.pl $home/.bar.pl
+ln -s $HOME/repos/aliases/$osDir/bar.pl $HOME/.bar.pl
 		echo "----- Copying bash alias script: .ba.sh"
-ln -s $home/repos/aliases/$osDir/ba.sh $home/.ba.sh
+ln -s $HOME/repos/aliases/$osDir/ba.sh $HOME/.ba.sh
 		echo "----- Copying aliases file: .bash_aliases"
-ln -s $home/repos/aliases/$osDir/bash_aliases $home/.bash_aliases
+ln -s $HOME/repos/aliases/$osDir/bash_aliases $HOME/.bash_aliases
 
-source $home/.bashrc
+source $HOME/.bashrc
 
-cp $home/repos/aliases/common/bash_paths_template $home/.bash_paths
-touch $home/.work_aliases
-touch $home/.bash_vars
+cp $HOME/repos/aliases/common/bash_paths_template $HOME/.bash_paths
+touch $HOME/.work_aliases
+touch $HOME/.bash_vars
 
 # Setup Libraries directory
 echo "Creating directory: Libraries"
-if [ ! -d "/home/$username/Libraries" ]; then
+if [ ! -d "$HOME/Libraries" ]; then
 	mkdir Libraries
 fi
 
