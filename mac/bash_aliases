@@ -40,7 +40,7 @@
 
 		alias sl='pwd > ~/.lwd.txt; echo "Set Last Working Directory to: " `cat ~/.lwd.txt`'
 		alias lwd='cat ~/.lwd.txt'
-		alias gll='cd `cat ~/.lwd.txt`; ls'
+		alias gl='cd `cat ~/.lwd.txt`; ls'
 
 
 	#--- Rename files to remove spaces
@@ -88,6 +88,7 @@
 	
 	#--- Vim
 		alias vi='vim -p'
+		alias vim='vim -p'
 		alias vb='vim ~/.vimrc'
 	
 	#--- Backup
@@ -151,7 +152,7 @@
 
 
 	#---Unorganized Aliases---#
-		alias tofile=" 2>&1 | tee"
+		alias tofile=" 2>&1 | tee "
 	#---End of Aliases---#
 
 ########################## Notes ##########################
