@@ -4,10 +4,6 @@ if [[ -z `command -v curl` ]]; then
     sudo apt-get install curl
 fi
 
-# --- Establish Hue group IDs
-export HUEKITGROUP="1"
-export HUEBEDGROUP="2"
-
 #-- -Hue commands
 function bedon
 {

@@ -21,8 +21,6 @@ fi
 git config --global user.email $gitEmail
 git config --global core.editor $gitCoreEditor
 
-
-
 # --- get directories from git
 cd repos
 if [ ! -d "$HOME/repos/aliases" ]; then
