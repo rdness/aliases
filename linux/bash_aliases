@@ -1,8 +1,8 @@
 ############################# Environment Setup #############################
 	
 	# Includes environment variables
-	if [ -f ~/.bash_vars ]; then
-		.  ~/.bash_vars
+	if [ -f $ALIAS_HOME/.bash_vars ]; then
+		.  $ALIAS_HOME/.bash_vars
 	fi
 	
 	# Includes aliases used at work
@@ -77,14 +77,14 @@
 		alias .....='cd ../../../../'
 
 	#--- Configurations
-		alias b='vim ~/.bash_aliases; source ~/.bash_aliases'
-		alias wb='vim ~/.work_aliases; source ~/.work_aliases'
+		alias b="vim $ALIAS_HOME/.bash_aliases; source $ALIAS_HOME/.bash_aliases"
+		alias wb="vim $ALIAS_HOME/.work_aliases; source $ALIAS_HOME/.work_aliases"
 		alias la='ls -lah --color=auto'
 		alias ls='ls --color=auto'
 	
 	#--- Vim
 		alias vi='vim -p'
-		alias vb='vim ~/.vimrc'
+		alias vb="vim $ALIAS_HOME/.vimrc"
 	
 	#--- Backup
 		function cdb
@@ -92,7 +92,7 @@
 			cd ~/backup/$1;
 		}
 		
-		alias bb='cp ~/.bash_aliases ~/.bash_aliases.bak; echo "Backed up ~/.bash_aliases"'
+		alias bb="cp $ALIAS_HOME/.bash_aliases $ALIAS_HOME/.bash_aliases.bak; echo 'Backed up $ALIAS_HOME/.bash_aliases'"
 		alias bar='perl $ALIAS_HOME/.bar.pl'
 		
 	
@@ -109,7 +109,7 @@
 
 		alias makemake="$ALIAS_HOME/.makemake.py"		
 		alias dug='du -cha | grep "[0-9]G[ 	]"'
-		alias sb='source ~/.bash_aliases; echo "Resourced ~/.bash_aliases"'
+		alias sb="source $ALIAS_HOME/.bash_aliases; echo 'Resourced $ALIAS_HOME/.bash_aliases'"
 		alias untar='tar xvfz'
 		alias open='xdg-open . &> /dev/null'
 		alias mntwin="sudo mount /dev/sda2 /mnt/windows"
