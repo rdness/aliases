@@ -100,6 +100,15 @@ if [ -f ~/.bash_aliases ]; then
 	export DISPLAY_NAME=$USER
 
     . ~/.bash_aliases
+else
+	# Set default Alias Home, and display name
+	aliasfile=`find /home -name ".bash_aliases"`
+
+	export ALIAS_HOME=`dirname $aliasfile`
+	export DISPLAY_NAME=$USER
+
+	. $ALIAS_HOME/.bash_aliases
+
 fi
 
 # Adds the Time to the command line prompt
