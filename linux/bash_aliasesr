@@ -135,7 +135,6 @@
 
 	#---Unorganized Aliases---#
 	alias intellij='/home/david/Libraries/intellij/idea-IC-173.4674.33/bin/idea.sh'
-	alias p3='python3'
 	#---End of Aliases---#
 
 ########################## Notes ##########################
